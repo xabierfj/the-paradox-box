@@ -1,0 +1,14 @@
+  {
+    "id": "tesla",
+    "title": "The Tesla Protocol",
+    "slug": "the-tesla-protocol",
+    "image": "/src/content/rooms/_images/tesla.png",
+    "image_thumbnail": "/src/content/rooms/_images/Tesla-thumb.png",
+    "hook": "The future is bending",
+    "theme": ["Historical", "Sci-Fi", "Conspiracy"],
+    "difficulty": "5/5",
+    "players": "3-7",
+    "time": "80 Minutes",
+    "description": "In his final days, Nikola Tesla wasn't just working on wireless energy; he was crafting a paradox. He discovered a secret that could change the timeline of human history, but a shadowy organization stole his research and silenced him. He hid his final work in this, his long-lost laboratory, protected by arcane technology and puzzles only a genius could devise. The lab pulses with mysterious energy, filled with impossible inventions and cryptic blueprints that seem to bend the laws of physics. Your team must reactivate his machines, decode his revolutionary discoveries, and uncover the \"Tesla Protocol\" before his rivals return to erase it—and you—from existence. But beware: tampering with time itself may have consequences none of you can imagine.",
+    "colors": "from-blue-900 to-blue-500"
+  }
