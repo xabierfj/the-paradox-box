@@ -10,5 +10,5 @@
     "players": "2-5",
     "time": "60 Minutes",
     "description": "Blackwood Manor has held its breath for a century, ever since the entire Blackwood family vanished in a single night. This is not a box of terror, but of sorrow. Restless spirits drift through the halls, guarding a tragic family secret that binds them to this mortal realm. As paranormal investigators, you have been called to make contact with these lost souls, interpret their cryptic messages, and piece together the events of that mysterious evening. The manor's rooms hold clues in every shadow—family portraits with eyes that follow, music boxes that play melancholy tunes, and letters that reveal decades of hidden pain. Can you unravel the sorrowful paradox that keeps the Blackwood family trapped between worlds, bring them the peace they desperately seek, and find your own escape from their haunted domain?",
-    "colors": "from-gray-700 to-gray-500"
+    "color": "from-gray-700 to-gray-500"
   }

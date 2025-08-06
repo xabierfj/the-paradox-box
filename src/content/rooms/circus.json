@@ -2,7 +2,7 @@
     "id": "circus",
     "title": "The Despicable Circus",
     "slug": "despicable-circus",
-    "image_full": "/src/content/rooms/_images/circus.png",
+    "image": "/src/content/rooms/_images/circus.png",
     "image_thumbnail": "/src/content/rooms/_images/Circus-thumb.jpeg",
     "hook": "The last perfomance",
     "theme": ["Horror", "Supernatural"],
@@ -10,5 +10,5 @@
     "players": "2-6",
     "time": "60 Minutes",
     "description": "The Despicable Circus had its most brilliant moment many years ago, when a romance bloomed that would end in tragedy. Madame Pompery and Candyclown had fallen in love, but not with the same intensity. Soon the clown began to feel jealous, and in a burst of madness, he killed all the circus performers and finally took his own life. What no one imagined was that, even after death, the clown would continue claiming his victims. For many years, and even today, people speak of the \"Curse of the Despicable Circus,\" also known as the \"Curse of the Freaks,\" because everyone who enters the abandoned circus tents never sees the light of day again. Recently, Mr. Despicable has taken over the circus and has every intention of making it something grand again, but he will need the help of some brave souls to end the curse so he can take the circus from town to town once more.",
-    "colors": "from-red-900 to-red-600"
+    "color": "from-red-900 to-red-600"
   }
