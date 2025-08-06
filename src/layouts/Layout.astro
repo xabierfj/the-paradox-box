@@ -14,7 +14,9 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white">
+  <body
+    class="bg-default text-default selection:bg-secondary h-full overflow-x-hidden text-base selection:text-white"
+  >
     <Header />
     <Hero />
     <div class="space-y-24 px-8 py-32">
