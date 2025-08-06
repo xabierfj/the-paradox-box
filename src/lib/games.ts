@@ -2,6 +2,8 @@ export const games = [
   {
     id: "circus",
     title: "The Despicable Circus",
+    slug: "despicable-circus",
+    image: "/rooms/circus.png",
     hook: "Some boxes are better left unopened.",
     theme: "Supernatural Horror",
     difficulty: "4/5",
@@ -14,6 +16,8 @@ export const games = [
   {
     id: "tesla",
     title: "The Tesla Protocol",
+    slug: "the-tesla-protocol",
+    image: "/rooms/tesla.png",
     hook: "History holds the key. The future is the prize.",
     theme: "Historical Sci-Fi & Conspiracy",
     difficulty: "5/5",
@@ -26,6 +30,8 @@ export const games = [
   {
     id: "manor",
     title: "The Phantom Manor",
+    slug: "the-phantom-manor",
+    image: "/rooms/manor.png",
     hook: "Listen to the whispers between the walls.",
     theme: "Supernatural Mystery",
     difficulty: "3/5",

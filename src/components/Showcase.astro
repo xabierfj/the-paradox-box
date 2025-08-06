@@ -1,0 +1,11 @@
+---
+import { games } from '../lib/games';
+import ContentSection from './ContentSection.astro';
+import RoomCard from './RoomCard.astro';
+---
+<ContentSection id="rooms" title="Rooms">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {games.map((room) => (
+      <RoomCard room={room} />
+    ))}
+  </div>
