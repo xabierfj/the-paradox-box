@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* The Paradox Box Color Palette */
+:root {
+  /* Primary Colors - Background/Dark Version */
+  --color-primary-dark: #1a1a1a;      /* Deep charcoal */
+  --color-primary-midnight: #0B192E;   /* Midnight blue */
+  
+  /* Secondary Colors - Lines/Text */
+  --color-secondary-light: #E5E7EB;    /* Sophisticated off-white/light silver */
+  
+  /* Accent Colors - The Glow */
+  --color-accent-violet: #8A2BE2;      /* Electric Violet */
+  --color-accent-teal: #00A693;        /* Mystic Teal */
+  
+  /* Semantic Color Mappings */
+  --color-background: var(--color-primary-dark);
+  --color-text: var(--color-secondary-light);
+  --color-glow: var(--color-accent-violet);
+  --color-cta: var(--color-accent-violet);
+}
+
+/* Base styling with the color palette */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
