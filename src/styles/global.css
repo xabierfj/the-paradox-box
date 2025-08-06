@@ -3,16 +3,16 @@
 /* The Paradox Box Color Palette */
 :root {
   /* Primary Colors - Background/Dark Version */
-  --color-primary-dark: #1a1a1a;      /* Deep charcoal */
-  --color-primary-midnight: #0B192E;   /* Midnight blue */
-  
+  --color-primary-dark: #1a1a1a; /* Deep charcoal */
+  --color-primary-midnight: #0b192e; /* Midnight blue */
+
   /* Secondary Colors - Lines/Text */
-  --color-secondary-light: #E5E7EB;    /* Sophisticated off-white/light silver */
-  
+  --color-secondary-light: #e5e7eb; /* Sophisticated off-white/light silver */
+
   /* Accent Colors - The Glow */
-  --color-accent-violet: #8A2BE2;      /* Electric Violet */
-  --color-accent-teal: #00A693;        /* Mystic Teal */
-  
+  --color-accent-violet: #8a2be2; /* Electric Violet */
+  --color-accent-teal: #00a693; /* Mystic Teal */
+
   /* Semantic Color Mappings */
   --color-background: var(--color-primary-dark);
   --color-text: var(--color-secondary-light);
