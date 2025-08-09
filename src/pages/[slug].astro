@@ -13,10 +13,6 @@ export async function getStaticPaths() {
 
 const { room } = Astro.props as { room: CollectionEntry<"rooms"> };
 const relatedRooms = (await getCollection("rooms")).filter((r) => r.id !== room.id);
-// Image src={heroImage} alt={`${room.data.title} background`} widths={widths} sizes={sizes}
-// const heroImage = room.data.image_thumbnail ?? room.data.image;
-// const widths = [640, 1024, 1600];
-// const sizes = "100vw";
 ---
 
 <Layout title={`${room.data.title} · The Paradox Box`}>

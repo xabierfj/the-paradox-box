@@ -11,18 +11,15 @@ const { room } = Astro.props as Props;
 
 <div class="w-full max-w-sm rounded-xl bg-white/5 p-6">
   <h2 class="text-xl font-semibold tracking-wide text-white">Game Details</h2>
-  <div class="mt-5 space-y-6">
-    <div class="grid grid-cols-2 gap-3 text-center">
+  <div class="mt-4 space-y-6">
+    <div class="grid grid-cols-3 gap-2 text-center">
         <GameFeatures title="Players" data={room.data.players} icon="users" />
         <GameFeatures title="Time" data={room.data.time} icon="clock" />
         <GameFeatures title="Difficulty" data={room.data.difficulty} icon="star" />
     </div>
     {room.data.theme?.length && <Themes room={room} />}
     <div>
-      <a
-        href="/booking"
-        class="inline-flex items-center gap-2 rounded-md bg-[var(--color-cta)] px-5 py-2 text-sm font-semibold text-white shadow-[var(--color-cta)]/30 shadow transition hover:bg-[var(--color-cta)]/90"
-      >
+      <a href="/booking" class="inline-flex items-center gap-2 rounded-md bg-[var(--color-cta)] px-5 py-2 text-sm font-semibold text-white shadow-[var(--color-cta)]/30 shadow transition hover:bg-[var(--color-cta)]/90">
         Book Now
         <ArrowRight class="h-4 w-4" />
       </a>

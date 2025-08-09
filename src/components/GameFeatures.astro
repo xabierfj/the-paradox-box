@@ -13,6 +13,6 @@ const { title, data, icon } = Astro.props;
   {icon === "star" && <Star class="mx-auto mb-1 h-5 w-5 text-white/70 group-hover:text-[var(--color-glow)]" />}
   {icon === "clock" && <Clock class="mx-auto mb-1 h-5 w-5 text-white/70 group-hover:text-[var(--color-glow)]" />}
   <div class="cursor-default text-sm font-medium text-white/50 uppercase">{title}</div>
-  <div class="cursor-default text-base font-semibold text-white">{data}</div>
+  <div class="cursor-default text-sm font-semibold text-white">{data}</div>
 </div>
 
