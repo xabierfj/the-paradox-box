@@ -1,0 +1,34 @@
+---
+import { Instagram, Twitter } from "@lucide/astro";
+---
+
+<footer class="mt-16 border-t border-white/10 bg-[var(--color-background)]/80 backdrop-blur-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-3">
+    <div>
+      <h3 class="text-lg font-semibold text-white">Get In Touch</h3>
+      <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]/80">
+        <li>Email: <a class="underline hover:text-[var(--color-glow)]" href="mailto:contact@paradox.example">contact@paradox.fake</a></li>
+        <li>Phone: <a class="underline hover:text-[var(--color-glow)]" href="tel:+00000000000">+00 0000 000 000</a></li>
+        <li>Hours: Every Day · 10:00–22:00 (Realm Time)</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-lg font-semibold text-white">Location</h3>
+      <p class="mt-4 text-sm leading-relaxed text-[var(--color-text)]/80">
+        Nexus Facility<br />
+        42 Paradox Passage, Quarter VII<br />
+        Central District · The Neutral Expanse
+      </p>
+    </div>
+    <div>
+      <h3 class="text-lg font-semibold text-white">Follow</h3>
+      <ul class="mt-4 flex gap-4 text-sm text-[var(--color-text)]/80">
+        <li><a class="hover:text-[var(--color-glow)]" href="#" aria-label="Instagram"><Instagram class="h-7 w-7" /></a></li>
+        <li><a class="hover:text-[var(--color-glow)]" href="#" aria-label="Facebook"><Twitter class="h-7 w-7" /></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-6 text-center text-xs text-[var(--color-text)]/60">
+    {new Date().getFullYear()} The Paradox Box.
+  </div>
+</footer>
