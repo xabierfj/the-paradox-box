@@ -7,10 +7,10 @@ const { room } = Astro.props as Props;
 ---
 
 <div>
-  <span class="cursor-default text-xs font-semibold tracking-wide text-white/60">Themes</span>
+  <span class="cursor-default text-base font-semibold text-white/60">Themes</span>
   <div class="mt-2 flex flex-wrap gap-2">
     {room.data.theme.map((t) => (
-      <span class="cursor-default rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70 transition-colors hover:border-[var(--color-glow)]/40 hover:text-white">
+      <span class="cursor-default rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70 transition-colors hover:border-[var(--color-glow)]/40 hover:text-[var(--color-glow)]">
         {t}
       </span>
     ))}

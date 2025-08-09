@@ -1,0 +1,81 @@
+---
+import ContentSection from './ContentSection.astro';
+---
+
+<ContentSection id="about" title="About Us">
+  <Fragment slot="lead">
+    Crafting narrative-driven escape experiences that bend logic and blur reality.
+  </Fragment>
+
+  <div class="mx-auto w-full max-w-5xl space-y-14">
+    <!-- Intro -->
+    <div class="space-y-6 text-center">
+      <p class="text-[var(--color-text)]/85 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+        The Paradox Box is more than locked doors and ticking clocks. It's a curated journey into worlds where science, superstition, and storytelling collide. Every room is an atmospheric puzzle tapestry—layered clues, sensory misdirection, emotional stakes—engineered to immerse, challenge, and leave a lingering after-thought long after you've stepped back outside.
+      </p>
+      <p class="text-[var(--color-text)]/70 text-base md:text-lg max-w-3xl mx-auto">
+        We design with a cinematographer’s eye, a game designer’s rigor, and a magician’s obsession with controlled surprise. Nothing is random—every sound, flicker, texture and symbol serves narrative intent.
+      </p>
+    </div>
+
+    <!-- Pillars -->
+    <div class="grid gap-8 md:grid-cols-3">
+      {[
+        { title: 'Immersive Worlds', body: 'Environmental storytelling, layered ambience, and reactive set pieces pull you inside the fiction—no filler props.' },
+        { title: 'Cognitive Flow', body: 'Puzzle arcs tuned for momentum—not frustration. Logical chains that reward collaboration and lateral thinking.' },
+        { title: 'Memorable Emotion', body: 'Moments of awe, tension, revelation, and quiet detail. Experiences designed to be talked about—together.' }
+      ].map(card => (
+        <div class="relative rounded-lg border border-white/5 bg-gradient-to-br from-white/5 to-white/0 p-[1px] overflow-hidden group">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_30%_20%,var(--color-accent-teal)/25,transparent_70%)]"></div>
+          <div class="relative h-full flex flex-col gap-3 rounded-lg bg-[var(--color-background)]/70 backdrop-blur-sm px-5 py-6">
+            <h3 class="text-lg font-semibold tracking-wide text-white group-hover:text-[var(--color-accent-teal)] transition-colors">{card.title}</h3>
+            <p class="text-sm leading-relaxed text-[var(--color-text)]/75">{card.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Split Block -->
+    <div class="grid gap-10 md:grid-cols-2 items-start">
+      <div class="space-y-5">
+        <h3 class="text-2xl font-bold text-white">Why We Obsess Over Details</h3>
+        <p class="text-[var(--color-text)]/75 leading-relaxed">
+          A great escape room isn’t just puzzles—it’s pacing. We prototype every interaction multiple times: ergonomic reach, visual scan paths, tactile feedback, failure recovery. The goal: players feel *smart*, never stalled by ambiguity.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]/65">
+          <li class="flex gap-2"><span class="text-[var(--color-accent-teal)]">▹</span>Adaptive hint philosophy—assist without stealing discovery.</li>
+          <li class="flex gap-2"><span class="text-[var(--color-accent-teal)]">▹</span>Integrated lighting & sound that react to player progress.</li>
+          <li class="flex gap-2"><span class="text-[var(--color-accent-teal)]">▹</span>Diegetic interfaces (no immersion-breaking keypads unless justified).</li>
+          <li class="flex gap-2"><span class="text-[var(--color-accent-teal)]">▹</span>Replay-resistant branching reveals & variable clue ordering.</li>
+        </ul>
+      </div>
+      <div class="relative">
+        <div class="pointer-events-none absolute -inset-1 rounded-xl bg-[radial-gradient(circle_at_60%_40%,var(--color-glow)/25,transparent_70%)] opacity-40"></div>
+        <div class="relative rounded-xl border border-white/5 bg-gradient-to-br from-white/10 to-white/0 p-8 backdrop-blur-md shadow-lg shadow-black/40">
+          <h4 class="mb-4 text-xl font-semibold text-white">Our Ethos</h4>
+          <p class="text-sm leading-relaxed text-[var(--color-text)]/80">
+            We build experiences that respect the intelligence and time of our players. The objective isn’t to trap you—it’s to *engage* you. You shouldn’t just escape the room; the room should escape with you—living on as a shared story.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            {['Design Integrity','Narrative Cohesion','Replay Value','Team Synergy','Atmospheric Depth'].map(tag => (
+              <span class="text-xs tracking-wide rounded-full border border-[var(--color-accent-teal)]/30 bg-[var(--color-accent-teal)]/10 px-3 py-1 text-[var(--color-accent-teal)]">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center space-y-6 pt-6">
+      <p class="text-[var(--color-text)]/80 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+        Ready to step into a paradox? Each room is a different discipline of thought—pattern recognition, symbolic decoding, narrative inference. Bring curiosity.
+      </p>
+      <a href="/booking" class="inline-flex items-center gap-3 rounded-md bg-[var(--color-accent-teal)]/90 px-8 py-4 font-semibold text-white shadow-lg shadow-[var(--color-accent-teal)]/25 backdrop-blur hover:bg-[var(--color-accent-teal)] transition-colors duration-300">
+        Book Your Experience
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 12h14"/></svg>
+      </a>
+    </div>
+  </div>
+</ContentSection>
