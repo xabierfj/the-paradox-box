@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Clock, Users, Star } from '@lucide/astro';
+import Themes from './UI/Themes.astro';
+
+interface Props {
+  room: CollectionEntry<'rooms'>;
+  showBookingButton?: boolean;
+}
+
+const { room, showBookingButton = true } = Astro.props as Props;
+const difficultyRaw = room.data.difficulty;
+const difficultyValue = Number((difficultyRaw.match(/^\d+/)?.[0]) ?? 0);
+---
+<div class="w-full max-w-sm rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+  <h2 class="text-xl font-semibold tracking-wide text-white">Game Details</h2>
+  <div class="mt-5 space-y-6">
+    <div class="grid grid-cols-2 gap-3 text-center">
+      <div class="group rounded-lg border border-white/10 bg-black/30 px-3 py-3 hover:border-[var(--color-glow)]/40 transition-colors">
+        <Users class="mx-auto mb-1 h-5 w-5 text-white/70 group-hover:text-[var(--color-glow)]" />
+        <div class="text-xs font-medium uppercase tracking-wide text-white/50 cursor-default">Players</div>
+        <div class="text-sm font-semibold text-white cursor-default">{room.data.players}</div>
+      </div>
+      <div class="group rounded-lg border border-white/10 bg-black/30 px-3 py-3 hover:border-[var(--color-glow)]/40 transition-colors">
+        <Clock class="mx-auto mb-1 h-5 w-5 text-white/70 group-hover:text-[var(--color-glow)]" />
+        <div class="text-xs font-medium uppercase tracking-wide text-white/50 cursor-default">Time</div>
+        <div class="text-sm font-semibold text-white cursor-default">{room.data.time}</div>
+      </div>
+    </div>
+    <div>
+      <div class="mb-2 flex items-center justify-between">
+        <span class="text-xs font-semibold tracking-wide text-white/60">Difficulty</span>
+        <span class="text-[10px] font-medium text-white/40 ">{difficultyRaw}</span>
+      </div>
+      <div class="flex gap-1" aria-label={`Difficulty ${difficultyRaw}`} role="img">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div class={`h-2 flex-1 rounded-sm ${i < difficultyValue ? 'bg-red-500' : 'bg-white/15'}`}></div>
+        ))}
+      </div>
+    </div>
+    {room.data.theme?.length && (
+      <Themes room={room} />
+    )}
+    {showBookingButton && (
+      <div>
+        <a href="/booking" class="inline-flex items-center gap-2 rounded-md bg-[var(--color-cta)] px-5 py-2 text-sm font-semibold text-white shadow shadow-[var(--color-cta)]/30 transition hover:bg-[var(--color-cta)]/90">
+          Book Now
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 12h14"/></svg>
+        </a>
+      </div>
+    )}
+  </div>
+</div>

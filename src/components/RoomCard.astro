@@ -5,30 +5,35 @@ import type { CollectionEntry } from "astro:content";
 export interface Props {
   room: CollectionEntry<"rooms">;
 }
-
-console.log("RoomCard Props:", Astro.props);
-
 const { room } = Astro.props;
 const widths = [450, 800];
 const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
 ---
 
-<a class="group hover:!text-default aspect-video" href={room.data.slug}>
-  <figure class="relative h-full w-full overflow-hidden">
+<a
+  class="group relative block overflow-hidden rounded-lg border border-gray-700/50 bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm transition-all duration-300 hover:border-[var(--color-accent-teal)]/60 hover:shadow-[var(--color-accent-teal)]/10 hover:shadow-xl"
+  href={room.data.slug}
+>
+  <figure class="relative aspect-video overflow-hidden">
     <Image
       src={room.data.image_thumbnail}
       alt={room.data.title}
-      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-      loading="lazy" 
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
       widths={widths}
       sizes={sizes}
-      />
-    <figcaption class="absolute inset-0">
-      <div class="flex h-full flex-col items-center justify-center gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100">
-        <h3 class="text-center text-xl font-extrabold uppercase">
-          {room.data.title}
-        </h3>
-        <p class="border border-current px-4 py-2">More Info</p>
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40"></div>
+    <figcaption class="absolute inset-0 flex flex-col justify-end p-6">
+      <div class="space-y-3">
+        <div class="translate-y-1 transform opacity-0 transition-all duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+          <div class="inline-flex items-center gap-2 rounded bg-[var(--color-accent-teal)] px-3 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-[var(--color-accent-teal)]/90">
+            <span>More Details</span>
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+        </div>
       </div>
     </figcaption>
   </figure>

@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import RoomCard from "@/components/RoomCard.astro";
+import GameDetails from "@/components/GameDetails.astro";
+
+export async function getStaticPaths() {
+  const rooms = await getCollection("rooms");
+  return rooms.map((room) => ({ params: { slug: room.data.slug }, props: { room } }));
+}
+
+const { room } = Astro.props as { room: CollectionEntry<"rooms"> };
+const relatedRooms = (await getCollection("rooms")).filter((r) => r.id !== room.id);
+// Image src={heroImage} alt={`${room.data.title} background`} widths={widths} sizes={sizes}
+// const heroImage = room.data.image_thumbnail ?? room.data.image;
+// const widths = [640, 1024, 1600];
+// const sizes = "100vw";
+---
+
+<Layout title={`${room.data.title} · The Paradox Box`}>
+  <Fragment slot="hero">
+    <section
+      class="relative flex h-[45vh] items-center justify-center overflow-hidden rounded-none bg-black/20 p-10 text-center"
+    >
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
+      </div>
+      <div class="relative z-10 mx-auto max-w-4xl py-10 md:py-14">
+        <h1 class="text-4xl font-extrabold tracking-tight md:text-5xl">
+          <span class={`uppercase bg-clip-text text-transparent bg-gradient-to-r ${room.data.color}`}>
+            {room.data.title}
+          </span>
+        </h1>
+        <p class="mt-3 text-2xl font-semibold tracking-[0.25em] text-white/80 uppercase">
+          {room.data.hook}
+        </p>
+      </div>
+    </section>
+  </Fragment>
+  <section class="py-10">
+    <div class="flex flex-row justify-between">
+      <div class="max-w-3xl">
+        <h2 class="text-2xl font-bold">Game Description</h2>
+        <p class="mt-4 text-gray-300">{room.data.description}</p>
+      </div>
+      <GameDetails room={room} />
+    </div>
+  </section>
+  {
+    relatedRooms.length > 0 && (
+      <section class="border-t border-white/10 py-12">
+        <div class="mx-auto max-w-6xl px-4">
+          <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold text-white">Related Rooms</h3>
+              <p class="mt-1 text-sm text-white/60">Explore other experiences you might enjoy.</p>
+            </div>
+            <a href="/" class="text-sm font-medium text-[var(--color-glow)] hover:underline">
+              View all
+            </a>
+          </div>
+          <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedRooms.map((r) => (
+              <RoomCard room={r} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</Layout>
