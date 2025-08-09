@@ -1,79 +1,43 @@
-<header
-  class="fixed top-0 right-0 left-0 z-50 border-b border-gray-800 shadow-black/20 drop-shadow-lg backdrop-blur-md"
->
+---
+import { Menu } from "@lucide/astro";
+
+interface NavLink { href: string; label: string }
+const navLinks: NavLink[] = [
+  { href: '/#rooms', label: 'The Rooms' },
+  { href: '/#about', label: 'About Us' },
+  { href: '/#', label: 'FAQ' },
+  { href: '/#', label: 'Contact' },
+];
+---
+<header class="fixed inset-x-0 top-0 z-50 border-b border-gray-800 shadow-black/20 drop-shadow-lg backdrop-blur-md">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between md:h-20">
-      <a
-        href="/"
-        class="flex-shrink-0 text-xl font-bold text-[var(--color-text)] transition-colors duration-300 hover:text-[var(--color-glow)] md:text-2xl"
-      >
+      <a href="/" class="flex-shrink-0 text-xl font-bold text-[var(--color-text)] transition-colors duration-300 hover:text-[var(--color-glow)] md:text-2xl">
         The Paradox Box
       </a>
-      <nav class="hidden items-center space-x-8 md:flex">
-        <ul class="flex items-center space-x-8">
-          <li>
-            <a
-              href="/#rooms"
-              class="font-medium text-[var(--color-text)] transition-colors duration-300 hover:text-[var(--color-glow)]"
-            >
-              The Rooms
-            </a>
-          </li>
-          <li>
-            <a
-              href="/#about"
-              class="font-medium text-[var(--color-text)] transition-colors duration-300 hover:text-[var(--color-glow)]"
-            >
-              About Us
-            </a>
-          </li>
-          <li>
-            <a
-              href="/faq"
-              class="font-medium text-[var(--color-text)] transition-colors duration-300 hover:text-[var(--color-glow)]"
-            >
-              FAQ
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contact"
-              class="font-medium text-[var(--color-text)] transition-colors duration-300 hover:text-[var(--color-glow)]"
-            >
-              Contact
-            </a>
-          </li>
+      <nav class="hidden md:flex" aria-label="Main navigation">
+        <ul class="flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="relative font-medium text-[var(--color-text)] transition-colors duration-300 hover:text-[var(--color-glow)]">
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
-
-      <!-- CTA Button -->
       <div class="hidden items-center md:flex">
-        <a
-          href="/booking"
-          class="rounded-md bg-[var(--color-cta)] px-6 py-2 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-[var(--color-cta)]/90 hover:shadow-[var(--color-cta)]/25 hover:shadow-lg"
-        >
+        <a href="/booking" class="rounded-md bg-[var(--color-cta)] px-6 py-2 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-[var(--color-cta)]/90 hover:shadow-[var(--color-cta)]/25 hover:shadow-lg">
           Book Now
         </a>
       </div>
-
-      <!-- Mobile Menu Button -->
       <button
         class="flex h-10 w-10 items-center justify-center rounded-md text-[var(--color-text)] transition-colors duration-300 hover:bg-gray-800 hover:text-[var(--color-glow)] md:hidden"
         aria-controls="main-nav"
         aria-expanded="false"
       >
-        <svg
-          class="h-6 w-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+        <Menu class="h-6 w-6" />
+        <span class="sr-only">Open menu</span>
       </button>
     </div>
   </div>
