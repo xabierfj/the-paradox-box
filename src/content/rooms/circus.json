@@ -2,8 +2,12 @@
     "id": "circus",
     "title": "The Despicable Circus",
     "slug": "despicable-circus",
-    "image": "/src/content/rooms/_images/circus.png",
-    "image_thumbnail": "/src/content/rooms/_images/Circus-thumb.jpeg",
+    "image": "/src/content/rooms/_images/Circus_Thumb.png",
+    "image_thumbnail": "/src/content/rooms/_images/Circus_Thumb.png",
+    "image_gallery": [
+      "/src/content/rooms/_images/Circus_1.png",
+      "/src/content/rooms/_images/Circus_2.png"
+    ],
     "hook": "The last perfomance",
     "theme": ["Horror", "Supernatural"],
     "difficulty": "4/5",

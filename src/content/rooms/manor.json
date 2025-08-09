@@ -1,9 +1,9 @@
   {
     "id": "manor",
-    "title": "The Phantom Manor",
-    "slug": "the-phantom-manor",
-    "image": "/src/content/rooms/_images/manor.png",
-    "image_thumbnail": "/src/content/rooms/_images/Manor-thumb.jpeg",
+    "title": "Blackwood Manor",
+    "slug": "the-blackwood-manor",
+    "image": "/src/content/rooms/_images/Manor_Thumb.png",
+  "image_thumbnail": "/src/content/rooms/_images/Manor_Thumb.png",
     "hook": "Listen to the whispers",
     "theme": ["Supernatural", "Mystery"],
     "difficulty": "3/5",
