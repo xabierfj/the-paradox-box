@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import RoomCard from "@/components/RoomCard.astro";
 import GameDetails from "@/components/GameDetails.astro";
+import BookingSystem from "@/components/BookingSystem.astro";
 
 export async function getStaticPaths() {
   const rooms = await getCollection("rooms");
@@ -36,12 +37,14 @@ const relatedRooms = (await getCollection("rooms")).filter((r) => r.id !== room.
     </section>
   </Fragment>
   <section class="py-10">
-    <div class="flex flex-row justify-between">
-      <div class="max-w-3xl">
+    <div class="mx-auto max-w-6xl px-4 grid gap-10 lg:grid-cols-3">
+      <div class="lg:col-span-2 max-w-3xl">
         <h2 class="text-2xl font-bold">Game Description</h2>
-        <p class="mt-4 text-gray-300">{room.data.description}</p>
+        <p class="mt-4 text-gray-300 leading-relaxed">{room.data.description}</p>
       </div>
-      <GameDetails room={room} />
+      <div class="lg:col-span-1">
+        <GameDetails room={room} />
+      </div>
     </div>
   </section>
   {
