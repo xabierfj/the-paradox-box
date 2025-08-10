@@ -1,15 +1,15 @@
 ---
-import { Instagram, Twitter } from "@lucide/astro";
+import { Instagram, Twitter, Youtube } from "@lucide/astro";
 ---
 
 <footer class="mt-16 border-t border-white/10 bg-[var(--color-background)]/80 backdrop-blur-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-3">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8">
     <div>
       <h3 class="text-lg font-semibold text-white">Get In Touch</h3>
       <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]/80">
-        <li>Email: <a class="underline hover:text-[var(--color-glow)]" href="mailto:contact@paradox.example">contact@paradox.fake</a></li>
-        <li>Phone: <a class="underline hover:text-[var(--color-glow)]" href="tel:+00000000000">+00 0000 000 000</a></li>
-        <li>Hours: Every Day · 10:00–22:00 (Realm Time)</li>
+        <li>Email: <a class="underline hover:text-[var(--color-glow)]">contact@paradox.site</a></li>
+        <li>Phone: <a class="underline hover:text-[var(--color-glow)]">+00 345 678 901</a></li>
+        <li>Hours: Every Day · 10:00–22:00 CEST</li>
       </ul>
     </div>
     <div>
@@ -17,14 +17,27 @@ import { Instagram, Twitter } from "@lucide/astro";
       <p class="mt-4 text-sm leading-relaxed text-[var(--color-text)]/80">
         Nexus Facility<br />
         42 Paradox Passage, Quarter VII<br />
-        Central District · The Neutral Expanse
+        Central City · Greater Expanse
       </p>
     </div>
     <div>
       <h3 class="text-lg font-semibold text-white">Follow</h3>
       <ul class="mt-4 flex gap-4 text-sm text-[var(--color-text)]/80">
-        <li><a class="hover:text-[var(--color-glow)]" href="#" aria-label="Instagram"><Instagram class="h-7 w-7" /></a></li>
-        <li><a class="hover:text-[var(--color-glow)]" href="#" aria-label="Facebook"><Twitter class="h-7 w-7" /></a></li>
+        <li>
+          <a class="hover:text-[var(--color-glow)]" href="#" aria-label="Instagram">
+            <Instagram class="h-7 w-7" />
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-[var(--color-glow)]" href="#" aria-label="Twitter">
+            <Twitter class="h-7 w-7" />
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-[var(--color-glow)]" href="#" aria-label="YouTube">
+            <Youtube class="h-7 w-7" />
+          </a>
+        </li>
       </ul>
     </div>
   </div>
