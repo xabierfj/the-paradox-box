@@ -10,7 +10,7 @@ const isCI = !!process.env.GITHUB_ACTIONS;
 const base = isCI && repo ? `/${repo}` : undefined;
 
 export default defineConfig({
-  site: 'https://xabierfj.github.io',
+  site: 'https://xabierfj.github.io/the-paradox-box',
   base,
   vite: {
     plugins: [tailwindcss()],
