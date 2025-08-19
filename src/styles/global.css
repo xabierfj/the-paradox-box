@@ -1,27 +1,47 @@
 @import "tailwindcss";
 
-/* The Paradox Box Color Palette */
+/* The Paradox Box Color Palette - Revamped (Cyber Noir) */
 :root {
-  /* Primary Colors - Background/Dark Version */
-  --color-primary-dark: #1a1a1a; /* Deep charcoal */
-  --color-primary-midnight: #0b192e; /* Midnight blue */
+  /* Core Neutrals */
+  --color-primary-dark: #05060a; /* Near-black with a hint of blue */
+  --color-primary-midnight: #0f1725; /* Deep navy slate */
 
-  /* Secondary Colors - Lines/Text */
-  --color-secondary-light: #e5e7eb; /* Sophisticated off-white/light silver */
+  /* Text & Surface */
+  --color-secondary-light: #f1f5f9; /* Soft crystal white */
+  --color-secondary-dim: #94a3b8; /* Muted slate */
 
-  /* Accent Colors - The Glow */
-  --color-accent-violet: #8a2be2; /* Electric Violet */
-  --color-accent-teal: #00a693; /* Mystic Teal */
+  /* Accents */
+  --color-accent-violet: #e9467c; /* Neon magenta-rose */
+  --color-accent-teal: #36d7ff; /* Electric cyan */
+  --color-accent-amber: #f59e0b; /* Warm highlight */
 
-  /* Semantic Color Mappings */
+  /* Semantic Tokens */
   --color-background: var(--color-primary-dark);
+  --color-background-alt: var(--color-primary-midnight);
   --color-text: var(--color-secondary-light);
+  --color-text-muted: var(--color-secondary-dim);
   --color-glow: var(--color-accent-violet);
   --color-cta: var(--color-accent-violet);
+  --color-focus-ring: var(--color-accent-teal);
 }
 
 /* Base styling with the color palette */
 body {
-  background-color: var(--color-background);
+  background: radial-gradient(circle at 20% 25%, #111827 0%, rgba(17,24,39,0) 55%),
+              radial-gradient(circle at 80% 70%, #1e293b 0%, rgba(30,41,59,0) 60%),
+              linear-gradient(140deg, var(--color-primary-dark) 0%, var(--color-primary-midnight) 100%);
   color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Utility: focus outline harmonized with new palette */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Optional subtle glow class */
+.glow-text {
+  text-shadow: 0 0 6px var(--color-glow), 0 0 18px var(--color-glow);
 }

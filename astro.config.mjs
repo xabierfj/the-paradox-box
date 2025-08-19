@@ -12,6 +12,7 @@ const base = isCI && repo ? `/${repo}` : undefined;
 export default defineConfig({
   site: 'https://xabierfj.github.io/the-paradox-box',
   base,
+  // No React integration needed; all components are Astro / vanilla
   vite: {
     plugins: [tailwindcss()],
   },

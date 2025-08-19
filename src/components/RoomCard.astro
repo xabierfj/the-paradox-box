@@ -8,33 +8,88 @@ export interface Props {
 const { room } = Astro.props;
 const widths = [450, 800];
 const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
+
+const difficultyNum = parseInt(room.data.difficulty.split("/")[0]) || 0;
+const maxDifficulty = 5;
 ---
 
-<a
-  class="group relative block overflow-hidden rounded-lg border border-gray-700/50 bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm transition-all duration-300 hover:border-[var(--color-accent-teal)]/60 hover:shadow-[var(--color-accent-teal)]/10 hover:shadow-xl"
-  href={room.data.slug}
+<article
+  class={`group relative overflow-hidden rounded-xl border border-white/10 bg-gray-900/50 backdrop-blur-sm transition-all duration-300 hover:border-white hover:shadow-2xl`}
+  data-room-card
+  data-theme={room.data.theme.join(",")}
+  data-difficulty={room.data.difficulty}
+  data-players={room.data.players}
+  data-title={room.data.title}
 >
-  <figure class="relative aspect-video overflow-hidden">
+  <div class="relative aspect-[4/3] overflow-hidden">
     <Image
       src={room.data.image_thumbnail}
       alt={room.data.title}
-      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
       loading="lazy"
       widths={widths}
       sizes={sizes}
     />
-    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40"></div>
-    <figcaption class="absolute inset-0 flex flex-col justify-end p-6">
-      <div class="space-y-3">
-        <div class="translate-y-1 transform opacity-0 transition-all duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-          <div class="inline-flex items-center gap-2 rounded bg-[var(--color-accent-teal)] px-3 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-[var(--color-accent-teal)]/90">
-            <span>More Details</span>
-            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
+    <div class="absolute top-4 right-4 rounded-full border border-white/20 bg-black/70 px-3 py-1 backdrop-blur-sm">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-medium text-white">Difficulty</span>
+        <div class="flex gap-1">
+          {
+            Array.from({ length: maxDifficulty }, (_, i) => (
+              <div
+                class={`h-2 w-2 rounded-full ${
+                  i < difficultyNum ? "bg-gradient-to-r from-yellow-400 to-red-500" : "bg-gray-600"
+                }`}
+              />
+            ))
+          }
         </div>
       </div>
-    </figcaption>
-  </figure>
-</a>
+    </div>
+    <div class="absolute right-4 bottom-4 left-4">
+      <div class="flex items-center justify-between text-xs text-gray-300">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-1">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
+              ></path>
+            </svg>
+            {room.data.players}
+          </span>
+          <span class="flex items-center gap-1">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                clip-rule="evenodd"></path>
+            </svg>
+            {room.data.time}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="p-6">
+    <h3 class={`text-xl font-bold mb-2 text-transparent bg-gradient-to-b ${room.data.color} bg-clip-text`}>
+      {room.data.title}
+    </h3>
+    <p class="text-gray-400 text-sm font-medium uppercase tracking-wider mb-3">
+      {room.data.hook}
+    </p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      {room.data.theme.map(tag => (
+        <span class="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30">
+          {tag}
+        </span>
+      ))}
+    </div>
+    <a 
+      href={`/${room.data.slug}`}
+      class={`block w-full text-center py-3 bg-gradient-to-r ${room.data.color} hover:from-purple-500 hover:to-cyan-500 text-white font-semibold rounded-lg transition-all duration-300 transform hover:shadow-lg`}>
+      Explore Room
+      <svg class="inline-block w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+  </div>
+</article>

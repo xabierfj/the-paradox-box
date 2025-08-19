@@ -1,0 +1,203 @@
+---
+const { roomTitle = 'Escape Room' } = Astro.props as { roomTitle?: string };
+// Precompute next 30 days (ISO and human label) at build time; client script will just read dataset
+const dates = Array.from({ length: 30 }, (_, i) => {
+  const d = new Date();
+  d.setDate(d.getDate() + i);
+  return {
+    iso: d.toISOString().split('T')[0],
+    label: d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
+  };
+});
+const timeSlots = ['10:00','12:00','14:00','16:00','18:00','20:00'];
+---
+<div data-booking-root class="booking max-w-md mx-auto p-6 rounded-xl bg-gray-900/80 backdrop-blur border border-white/10" data-dates={JSON.stringify(dates)} data-times={JSON.stringify(timeSlots)}>
+  <h3 class="text-xl font-bold text-white mb-4">Book {roomTitle}</h3>
+  <div class="steps flex items-center space-x-4 mb-6" data-step="1">
+    {[1,2,3].map(n => (
+      <div class="flex items-center step-indicator" data-step-id={n}>
+        <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium bg-gray-700 text-gray-400 transition-colors" >{n}</div>
+        {n < 3 && <div class="w-8 h-0.5 bg-gray-700 transition-colors" />}
+      </div>
+    ))}
+  </div>
+  <form class="space-y-6" onsubmit="return false;">
+    <section class="step step-1 space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-300 mb-2">Select Date</label>
+        <select class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-glow)]" name="date">
+          <option value="">Choose a date</option>
+          {dates.map(d => <option value={d.iso}>{d.label}</option>)}
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-300 mb-2">Select Time</label>
+        <div class="grid grid-cols-2 gap-2">
+          {timeSlots.map(t => <button type="button" data-time={t} class="time-btn p-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:border-gray-600 transition-colors">{t}</button>)}
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-300 mb-2">Number of Players</label>
+        <div class="flex items-center space-x-3">
+          <button type="button" class="dec w-10 h-10 bg-gray-800 hover:bg-gray-700 text-white rounded-lg border border-gray-700">-</button>
+          <span class="player-count text-white text-lg font-semibold w-8 text-center">2</span>
+          <button type="button" class="inc w-10 h-10 bg-gray-800 hover:bg-gray-700 text-white rounded-lg border border-gray-700">+</button>
+        </div>
+      </div>
+      <button type="button" class="continue w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-[var(--color-glow)] to-[var(--color-accent-teal)] disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed transition-colors" disabled>Continue</button>
+    </section>
+    <section class="step step-2 hidden space-y-4">
+      <div class="bg-gray-800/60 p-4 rounded-lg text-sm text-gray-300">
+        <p class="mb-2">Enter contact info (visual only).</p>
+        <div class="space-y-3">
+          <input type="text" placeholder="Full Name" class="w-full bg-gray-900/70 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-glow)]" />
+          <input type="email" placeholder="Email" class="w-full bg-gray-900/70 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-glow)]" />
+          <input type="tel" placeholder="Phone" class="w-full bg-gray-900/70 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-glow)]" />
+        </div>
+      </div>
+      <div class="flex space-x-2">
+        <button type="button" class="back flex-1 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors">Back</button>
+        <button type="button" class="review flex-1 py-3 bg-gradient-to-r from-[var(--color-glow)] to-[var(--color-accent-teal)] text-white font-semibold rounded-lg transition-colors disabled:opacity-50" disabled>Review</button>
+      </div>
+    </section>
+    <section class="step step-3 hidden space-y-4">
+      <div class="summary bg-gray-800/60 p-4 rounded-lg text-sm text-gray-300 space-y-2">
+        <h4 class="text-white font-semibold mb-2">Booking Summary</h4>
+        <div class="row flex justify-between"><span class="text-gray-400">Room:</span><span class="text-white room-name">{roomTitle}</span></div>
+        <div class="row flex justify-between"><span class="text-gray-400">Date:</span><span class="text-white summary-date"></span></div>
+        <div class="row flex justify-between"><span class="text-gray-400">Time:</span><span class="text-white summary-time"></span></div>
+        <div class="row flex justify-between"><span class="text-gray-400">Players:</span><span class="text-white summary-players"></span></div>
+        <div class="border-t border-gray-700 pt-2 flex justify-between text-white font-semibold text-base">
+          <span>Total:</span><span class="text-emerald-400 summary-total"></span>
+        </div>
+      </div>
+      <div class="flex space-x-2">
+        <button type="button" class="back2 flex-1 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors">Back</button>
+        <button type="button" class="confirm flex-1 py-3 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-semibold rounded-lg transition-colors">Confirm (Mock)</button>
+      </div>
+      <p class="text-xs text-gray-500">No real booking is made. This is a static interactive mock.</p>
+    </section>
+    <section class="confirmation hidden text-center space-y-4">
+      <div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/20 flex items-center justify-center">
+        <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+      </div>
+      <h4 class="text-2xl font-bold text-white">Booking Confirmed!</h4>
+      <p class="text-gray-300">Your mock reservation is displayed above.</p>
+      <button type="button" class="again w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-[var(--color-glow)] to-[var(--color-accent-teal)] hover:from-pink-500 hover:to-cyan-500">Book Another</button>
+    </section>
+  </form>
+</div>
+
+<style>
+  /* Selected time button state (avoid relying on dynamically added Tailwind classes that might be purged) */
+  .time-btn.selected {
+    background: var(--color-glow);
+    border-color: var(--color-glow);
+    color: #fff;
+    box-shadow: 0 0 0 1px var(--color-glow), 0 0 10px -2px var(--color-glow);
+  }
+  .time-btn.selected:hover { border-color: var(--color-glow); }
+</style>
+<script type="module">
+(() => {
+  // Select the booking root explicitly (previous method failed after inserting <style>)
+  const root = document.querySelector('[data-booking-root]');
+  if (!root) return;
+  const state = { step: 1, date: '', time: '', players: 2 };
+  const steps = root.querySelector('.steps');
+  const stepSections = root.querySelectorAll('.step');
+  const confirmation = root.querySelector('.confirmation');
+  const continueBtn = root.querySelector('.continue');
+  const reviewBtn = root.querySelector('.review');
+  const confirmBtn = root.querySelector('.confirm');
+  const backBtns = root.querySelectorAll('.back, .back2');
+  const playerCountEl = root.querySelector('.player-count');
+  const summary = {
+    date: root.querySelector('.summary-date'),
+    time: root.querySelector('.summary-time'),
+    players: root.querySelector('.summary-players'),
+    total: root.querySelector('.summary-total')
+  };
+
+  function updateIndicators() {
+    if (!steps) return;
+    steps.querySelectorAll('.step-indicator').forEach(ind => {
+      const id = Number(ind.dataset.stepId);
+      const circle = ind.firstElementChild;
+      const bar = ind.querySelector('.w-8.h-0.5');
+      if (circle) {
+        if (state.step >= id) {
+          circle.classList.remove('bg-gray-700','text-gray-400');
+          circle.classList.add('bg-[var(--color-glow)]','text-white');
+        } else {
+          circle.classList.add('bg-gray-700','text-gray-400');
+          circle.classList.remove('bg-[var(--color-glow)]','text-white');
+        }
+      }
+      if (bar) {
+        if (state.step > id) { bar.classList.add('bg-[var(--color-glow)]'); bar.classList.remove('bg-gray-700'); }
+        else { bar.classList.add('bg-gray-700'); bar.classList.remove('bg-[var(--color-glow)]'); }
+      }
+    });
+  }
+
+  function showStep(n) {
+    state.step = n;
+    stepSections.forEach((s, i) => {
+      s.classList.toggle('hidden', i !== n - 1);
+    });
+    confirmation && confirmation.classList.add('hidden');
+    updateIndicators();
+  }
+
+  root.querySelectorAll('select[name="date"]').forEach(sel => sel.addEventListener('change', e => {
+    const target = e.target;
+    state.date = target.value;
+    updateContinue();
+  }));
+
+  root.querySelectorAll('.time-btn').forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    state.time = btn.dataset.time || '';
+    root.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    updateContinue();
+  }));
+
+  root.querySelector('.dec')?.addEventListener('click', () => { state.players = Math.max(1, state.players - 1); if (playerCountEl) playerCountEl.textContent = String(state.players); });
+  root.querySelector('.inc')?.addEventListener('click', () => { state.players = Math.min(8, state.players + 1); if (playerCountEl) playerCountEl.textContent = String(state.players); });
+
+  function updateContinue() { if (continueBtn) (continueBtn).disabled = !(state.date && state.time); }
+
+  continueBtn?.addEventListener('click', () => showStep(2));
+  reviewBtn?.addEventListener('click', () => {
+    if (summary.date) summary.date.textContent = new Date(state.date).toLocaleDateString();
+    if (summary.time) summary.time.textContent = state.time;
+    if (summary.players) summary.players.textContent = String(state.players);
+    if (summary.total) summary.total.textContent = '$' + (state.players * 35);
+    showStep(3);
+  });
+
+  backBtns.forEach(b => b.addEventListener('click', () => showStep(state.step - 1)));
+
+  confirmBtn?.addEventListener('click', () => {
+    stepSections.forEach(s => s.classList.add('hidden'));
+    confirmation && confirmation.classList.remove('hidden');
+  });
+
+  root.querySelector('.again')?.addEventListener('click', () => {
+    state.step = 1; state.date=''; state.time=''; state.players=2; if (playerCountEl) playerCountEl.textContent='2';
+    const dateSel = root.querySelector('select[name="date"]'); if (dateSel) dateSel.value='';
+  root.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+    showStep(1); updateContinue();
+  });
+
+  root.querySelectorAll('.step-2 input').forEach(inp => inp.addEventListener('input', () => {
+    const filled = Array.from(root.querySelectorAll('.step-2 input')).every(i => (i).value.trim());
+    if (reviewBtn) reviewBtn.disabled = !filled;
+  }));
+
+  updateIndicators();
+  updateContinue();
+})();
+</script>
